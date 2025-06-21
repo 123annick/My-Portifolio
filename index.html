@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f8ff 0%, #e6f2ff 100%);
+      color: #333;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background: linear-gradient(to right, #003366 0%, #0066cc 100%);
+      color: #fff;
+      padding: 30px 0;
+      text-align: center;
+      border-bottom: 5px solid #4CAF50;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      animation: pulse 15s infinite linear;
+    }
+
+    @keyframes pulse {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      position: relative;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .main-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 40px 0;
+      gap: 30px;
+    }
+
+    .bio-section, .hobbies-section {
+      flex: 1;
+      min-width: 300px;
+      background: linear-gradient(to bottom right, #e6f2ff 0%, #ffffff 100%);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 51, 102, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .bio-section:hover, .hobbies-section:hover {
+      transform: translateY(-5px);
+    }
+
+    .bio-section h2, .hobbies-section h2, .contact-section h2, .projects-section h2 {
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid;
+    }
+
+    .bio-section h2 { color: #0066cc; border-color: #0066cc; }
+    .hobbies-section h2 { color: #228B22; border-color: #228B22; }
+    .contact-section h2 { color: #800080; border-color: #800080; }
+    .projects-section h2 { color: #6a1b9a; border-color: #6a1b9a; }
+
+    .profile-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #4CAF50;
+      margin-right: 30px;
+      float: left;
+      shape-outside: circle();
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: all 0.5s ease;
+    }
+
+    .profile-image:hover {
+      transform: rotate(5deg) scale(1.05);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    .hobbies-list {
+      list-style-type: none;
+    }
+
+    .hobbies-list li {
+      padding: 12px 0;
+      border-bottom: 1px dashed rgba(0,0,0,0.1);
+      padding-left: 35px;
+      position: relative;
+    }
+
+    .hobbies-list li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: #0066cc;
+    }
+
+    .contact-section {
+      width: 100%;
+      background: linear-gradient(to bottom right, #e6e6fa 0%, #ffffff 100%);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(128, 0, 128, 0.1);
+      margin-top: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 2px solid #ccc;
+    }
+
+    .btn {
+      background: linear-gradient(45deg, #0066cc, #004d99);
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+    }
+
+    footer {
+      background: linear-gradient(to right, #003366 0%, #0066cc 100%);
+      color: white;
+      text-align: center;
+      padding: 30px 0;
+      margin-top: 50px;
+    }
+
+    /* Purple Projects Section */
+    .projects-section {
+      background: linear-gradient(to bottom right, #f3e5f5 0%, #ede7f6 100%);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(128, 0, 128, 0.1);
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    .projects-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-between;
+    }
+
+    .project-card {
+      flex: 1 1 45%;
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 6px 15px rgba(128, 0, 128, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 4px solid #ba68c8;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(128, 0, 128, 0.15);
+    }
+
+    .project-card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      border: 2px solid #ce93d8;
+    }
+
+    .project-card h3 {
+      color: #8e24aa;
+    }
+
+    .project-card p {
+      color: #4a148c;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+      }
+
+      .projects-grid {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Ujeneza Annick</h1>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="main-content">
+      <section class="bio-section clearfix">
+        <h2>Get to know Me</h2>
+        <img src="annickpic.jpg" alt="Profile Image" class="profile-image">
+        <p>Hello! I'm Annick, a passionate web developer who enjoys crafting interactive and user-friendly websites. I blend front-end and back-end skills to build useful tools and enjoyable digital experiences.</p>
+        <p>Outside of coding, I enjoy nature, learning new skills, and experimenting with creative ideas in tech and design.</p>
+      </section>
+
+      <section class="hobbies-section">
+        <h2>Hobbies</h2>
+        <ul class="hobbies-list">
+          <li>Creative coding and interactive art installations</li>
+          <li>Reading fantasy novels</li>
+          <li>Rock climbing and outdoor exploration</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Projects Section -->
+    <section class="projects-section">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <img src="https://via.placeholder.com/300x180?text=Stock+Management+System" alt="Stock Management System">
+          <h3>Stock Management System</h3>
+          <p>Tracks inventory levels, stock movement, and restocking needs for businesses with dashboard and report support.</p>
+        </div>
+        <div class="project-card">
+          <img src="https://via.placeholder.com/300x180?text=Library+Management+System" alt="Library Management System">
+          <h3>Library Management System</h3>
+          <p>Handles cataloging, book loans, due reminders, and fine calculations for educational institutions.</p>
+        </div>
+        <div class="project-card">
+          <img src="https://via.placeholder.com/300x180?text=Income+%26+Expense+Tracker" alt="Income and Expense Tracker">
+          <h3>Income & Expense Tracker</h3>
+          <p>A tool for managing personal finances with budgeting, visualization, and historical record features.</p>
+        </div>
+        <div class="project-card">
+          <img src="https://via.placeholder.com/300x180?text=Hydration+Reminder+App" alt="Hydration Reminder App">
+          <h3>Hydration Reminder App</h3>
+          <p>Simple and effective mobile tool to keep users hydrated by scheduling daily water intake reminders.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <h2>Contact Me</h2>
+      <form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Your email">
+        </div>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </section>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Ujeneza Annick. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
